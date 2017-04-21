@@ -42,15 +42,15 @@ The following tables lists the configurable parameters of the Fluentd Cloudwatch
 
 | Parameter                  | Description                                | Default                                                    |
 | -------------------------- | ------------------------------------------ | ---------------------------------------------------------- |
-| `image`                    | Image                                      | `18fgsa/fluentd-cloudwatch`                                |
-| `imageTag`                 | Image tag                                  | `0.1.0`                                                    |
-| `imagePullPolicy`          | Image pull policy                          | `Always` if `imageTag` is `latest`, else `IfNotPresent`    |
+| `image`                    | Image                                      | `fluent/fluentd-kubernetes-daemonset`                                |
+| `imageTag`                 | Image tag                                  | `v0.12.33-cloudwatch`                                                    |
+| `imagePullPolicy`          | Image pull policy                          | `Always` if `imageTag` is `imagePullPolicy`    |
 | `resources.limits.cpu`     | CPU limit                                  | `100m`                                                     |
 | `resources.limits.memory`  | Memory limit                               | `200Mi`                                                    |
 | `resources.requests.cpu`   | CPU request                                | `100m`                                                     |
 | `resources.requests.memory`| Memory request                             | `200Mi`                                                    |
 | `hostNetwork`              | Host network                               | `false`                                                    |
-| `annotations`              | Annotations                                | `nil`                                                      |
+| `annotations` (removed for now) | Annotations                                | `nil`                                                      |
 | `awsRegion`                | AWS Cloudwatch region                      | `us-east-1`                                                |
 | `logGroupName`             | AWS Cloudwatch log group                   | `kubernetes`                                               |
 
@@ -67,6 +67,3 @@ Alternatively, a YAML file that specifies the values for the above parameters ca
 ```console
 $ helm install --name my-release -f values.yaml stable/fluentd-cloudwatch
 ```
-
-### ConfigMap Files
-FluentD is configured through [td-agent.conf](http://docs.fluentd.org/articles/config-file). This file (and any others listed in `tdAgentFiles`) will be mounted into the `fluentd` pod.
